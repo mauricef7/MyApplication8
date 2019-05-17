@@ -14,7 +14,7 @@ public class ProductDatabase extends SQLiteOpenHelper {
     public static ProductDatabase INSTANCE = null;
     private static final String DB_NAME = "ProductsDB";
     private static final int VERSION = 1;
-    private static final String TABLE_NAME = "products"
+    public static final String TABLE_NAME = "products";
 
     private static final String ID_COLUMN = "ID";
     private static final String CATEGORY_COLUMN = "category";

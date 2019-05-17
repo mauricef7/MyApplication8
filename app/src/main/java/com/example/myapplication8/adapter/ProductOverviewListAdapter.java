@@ -27,9 +27,9 @@ public class ProductOverviewListAdapter extends ArrayAdapter<Product> {
         if(view ==null){
             view = LayoutInflater.from(getContext()).inflate(R.layout.product_overview_listitem, parent, false);
             }
-        ((TextView) view.findViewById(R.id.category_item)).setText(currentProduct.getCategory());
-        ((TextView) view.findViewById(R.id.name_item)).setText(currentProduct.getName());
-        ((TextView) view.findViewById(R.id.price_item)).setText(Double.toString(currentProduct.getPrice()));
+        ((TextView) view.findViewById(R.id.category)).setText(currentProduct.getCategory());
+        ((TextView) view.findViewById(R.id.name)).setText(currentProduct.getName());
+        ((TextView) view.findViewById(R.id.price)).setText(Double.toString(currentProduct.getPrice()));
 
         return view;
     }

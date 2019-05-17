@@ -22,6 +22,7 @@ import android.widget.ListView;
 
 import com.example.myapplication8.Database.Product;
 import com.example.myapplication8.adapter.ProductOverviewListAdapter;
+import com.example.myapplication8.Database.ProductDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private ListView                   listView;
+    private List<Product>              dataSource;
+    private ProductOverviewListAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,13 +42,14 @@ public class MainActivity extends AppCompatActivity
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "TODO", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
-
+//For Nav Drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -54,19 +59,51 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ListView listView = (ListView) findViewById(R.id.listView_allproducts);
 
-        List<Product> dataSource = new ArrayList<>();
-        dataSource.add("Test", "hut", "12");
-
-        listView.setAdapter(new ProductOverviewListAdapter(this, dataSource));
-        listView.setOnItemClickListener((adapterView, view, i, l)  {
-
+        //For product data:
+        this.listView = (ListView) findViewById(R.id.products);
+        this.dataSource = ProductDatabase.getInstance(this).readAllProducts();
+        this.adapter = new ProductOverviewListAdapter(this, dataSource);
+        this.listView.setAdapter(adapter);
+        this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(final AdapterView<?> adapterView, final View view, final int i, final long l) {
                 Object element = adapterView.getAdapter().getItem(i);
 
+      // For shopping cart :
+                //if (element instanceof Product) {
+                //  Product todo = (Product) element;
+
+                //     Intent intent = new Intent(MainActivity.this, ShoppingCartActivity.class);
+                //    intent.putExtra(ShoppingCartActivity.Product, product.getId());
+
+                //    startActivity(intent);
+                //}
                 Log.e("ClickOnList", element.toString());
+            }
             });
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshListView();
+    }
+
+    private void refreshListView() {
+        dataSource.clear();
+        dataSource.addAll(ProductDatabase.getInstance(this).readAllProducts());
+        adapter.notifyDataSetChanged();
+    }
+    public void clearAll() {
+        ProductDatabase database = ProductDatabase.getInstance(MainActivity.this);
+        database.deleteAllProducts();
+        refreshListView();
+    }
+
+    //public void newProduct(){
+    //    Intent i = new Intent(MainActivity.this, AddNewProducts.class);
+    //    startActivity(i);}
+
 
     @Override
     public void onBackPressed() {
