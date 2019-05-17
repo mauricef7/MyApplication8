@@ -20,6 +20,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.myapplication8.Database.Product;
+import com.example.myapplication8.adapter.ProductOverviewListAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,18 +56,16 @@ public class MainActivity extends AppCompatActivity
 
         ListView listView = (ListView) findViewById(R.id.listView_allproducts);
 
-        List<String> dataSource = new ArrayList<>();
-        dataSource.add("Test");
+        List<Product> dataSource = new ArrayList<>();
+        dataSource.add("Test", "hut", "12");
 
-        listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, dataSource));
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(final AdapterView<?> adapterView,final View view,final int i, final long 1) {
+        listView.setAdapter(new ProductOverviewListAdapter(this, dataSource));
+        listView.setOnItemClickListener((adapterView, view, i, l)  {
+
                 Object element = adapterView.getAdapter().getItem(i);
 
                 Log.e("ClickOnList", element.toString());
-            }
-        });
+            });
     }
 
     @Override
