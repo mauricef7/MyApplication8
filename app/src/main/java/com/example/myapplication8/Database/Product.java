@@ -23,6 +23,7 @@ public class Product implements Serializable {
         this.price = price;
     }
     public String getCategory() {return category;}
+
     public void setCategory (final String category) {this.category = category;}
 
     public String getName() {return name;}

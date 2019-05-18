@@ -47,10 +47,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     /**
      * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
+     *
      */
+
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            " m@f.com:11111", "bar@example.com:world"
+            "m:1"
     };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -69,7 +70,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        populateAutoComplete();
+        //populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -95,48 +96,48 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mProgressView = findViewById(R.id.login_progress);
     }
 
-    private void populateAutoComplete() {
-        if (!mayRequestContacts()) {
-            return;
-        }
+   // private void populateAutoComplete() {
+    //     if (!mayRequestContacts()) {
+        //         return;
+   //       }
+    //
+    //       getLoaderManager().initLoader(0, null, this);
+    //   }
 
-        getLoaderManager().initLoader(0, null, this);
-    }
-
-    private boolean mayRequestContacts() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return true;
-        }
-        if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }
-        if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok, new View.OnClickListener() {
-                        @Override
-                        @TargetApi(Build.VERSION_CODES.M)
-                        public void onClick(View v) {
-                            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-                        }
-                    });
-        } else {
-            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-        }
-        return false;
-    }
+    //private boolean mayRequestContacts() {
+    //    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+    //        return true;
+    //    }
+    //    if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
+    //       return true;
+    //   }
+    //   if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
+    //       Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
+    //               .setAction(android.R.string.ok, new View.OnClickListener() {
+    //                    @Override
+    //                    @TargetApi(Build.VERSION_CODES.M)
+                        //                    public void onClick(View v) {
+    //                        requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
+    //                    }
+//                });
+    //      } else {
+    //           requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
+    //  }
+//       return false;
+    // }
 
     /**
      * Callback received when a permissions request has been completed.
      */
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_READ_CONTACTS) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                populateAutoComplete();
-            }
-        }
-    }
+
+   // public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+    //                                        @NonNull int[] grantResults) {
+    //     if (requestCode == REQUEST_READ_CONTACTS) {
+    //        if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        //            populateAutoComplete();
+    //        }
+    //    }
+    // }
 
 
     /**
@@ -144,6 +145,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
+
     private void attemptLogin() {
         if (mAuthTask != null) {
             return;
@@ -192,13 +194,20 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
+
+        return true;
+
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        // if ( password.length() > 4){
+
+        //      if (password.equals(DUMMY_CREDENTIALS)) {
+        //          return true;
+        //       }
+        //   }
+        return true;
     }
 
     /**
@@ -322,10 +331,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     // Account exists, return true if the password matches.
                     return pieces[1].equals(mPassword);
                 }
+                else {
+                    return false;
+                }
             }
 
-            // TODO: register the new account here.
-            return true;
+
+           return true;
         }
 
         @Override
@@ -337,7 +349,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent);
 
-                finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();

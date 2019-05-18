@@ -18,7 +18,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.myapplication8.Database.Product;
 import com.example.myapplication8.adapter.ProductOverviewListAdapter;
@@ -37,18 +39,81 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        this.listView = (ListView) findViewById(R.id.products);
+        //Button add_btn = (Button) findViewById(R.id.add_btn);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        this.dataSource = ProductDatabase.getInstance(this).readAllProducts();
 
+        this.adapter = new ProductOverviewListAdapter(this, dataSource);
+        this.listView.setAdapter(adapter);
+        this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "TODO", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onItemClick(final AdapterView<?> adapterView, final View view, final int i, final long l) {
+                Object element = adapterView.getAdapter().getItem(i);
+                Log.e("ClickOnList", element.toString());
             }
         });
+        //reload all products from database
+        if (fab != null){
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View view) {
+                    Snackbar.make(view, "refresh products", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+
+                    ProductDatabase database = ProductDatabase.getInstance(MainActivity.this);
+
+                    clearAll();
+//Locally stored on device, To do: Replace with Webview
+                    database.createProduct(new Product("shoe, " , " white shoe EUR " , 200.00));
+                    database.createProduct(new Product("shoe, " , " brown Pantoffeln EUR " , 100.00));
+                    database.createProduct(new Product("shoe, " , " white shoe EUR " , 200.00));
+                    database.createProduct(new Product("shoe, " , " brown Pantoffeln EUR " , 100.00));
+                    database.createProduct(new Product("shoe, " , " black Schuh EUR " , 250.00));
+                    database.createProduct(new Product("shoe, " , " Oxford shoe EUR " , 240.00));
+                    database.createProduct(new Product("shoe, " , " Monk Business EUR " , 250.00));
+                    database.createProduct(new Product("shoe, " , " Policeman shoe EUR " , 300.00));
+                    database.createProduct(new Product("shoe, " , " Clown shoe EUR " , 900.00));
+                    database.createProduct(new Product("shoe, " , " Big AF shoe EUR " , 1100.00));
+                    database.createProduct(new Product("shoe, " , " Dwarf Pantoffeln EUR " , 900.00));
+                    database.createProduct(new Product("shoe, " , " Sandale EUR " , 20.00));
+                    database.createProduct(new Product("hat, " , " Baseballcap  EUR " , 290.00));
+                    database.createProduct(new Product("hat, " , " Bischofshut EUR " , 200.00));
+                    database.createProduct(new Product("hat, " , " Pastor's hat Pantoffeln EUR " , 100.00));
+                    database.createProduct(new Product("hat, " , " black hat EUR " , 25.00));
+                    database.createProduct(new Product("hat, " , " Oxford hat EUR " , 240.00));
+                    database.createProduct(new Product("hat, " , " Monk hat EUR " , 25.00));
+                    database.createProduct(new Product("hat, " , " Policeman cap EUR " , 30.00));
+                    database.createProduct(new Product("hat, " , " Clown cap EUR " , 90.00));
+                    database.createProduct(new Product("hat, " , " Big AF witchhat EUR " , 1100.00));
+                    database.createProduct(new Product("hat, " , " Dwarf hat EUR " , 90.00));
+                    database.createProduct(new Product("hat, " , " Mütze EUR " , 20.00));
+                    database.createProduct(new Product("hat, " , " Spitzhut  EUR " , 290.00));
+
+                    refreshListView();
+
+                }
+            });
+        }
+
+        listView.setAdapter(new ProductOverviewListAdapter(this, dataSource));
+
+
+
+
+
+//add item to shopping cart
+//        add_btn.setOnClickListener (new View.OnClickListener(){
+        //           @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
 //For Nav Drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -60,28 +125,20 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        //For product data:
-        this.listView = (ListView) findViewById(R.id.products);
-        this.dataSource = ProductDatabase.getInstance(this).readAllProducts();
-        this.adapter = new ProductOverviewListAdapter(this, dataSource);
-        this.listView.setAdapter(adapter);
-        this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(final AdapterView<?> adapterView, final View view, final int i, final long l) {
-                Object element = adapterView.getAdapter().getItem(i);
+
+
+//For product data:
 
       // For shopping cart :
                 //if (element instanceof Product) {
-                //  Product todo = (Product) element;
+                //  Product product = (Product) element;
 
                 //     Intent intent = new Intent(MainActivity.this, ShoppingCartActivity.class);
                 //    intent.putExtra(ShoppingCartActivity.Product, product.getId());
 
                 //    startActivity(intent);
                 //}
-                Log.e("ClickOnList", element.toString());
-            }
-            });
+
     }
     @Override
     protected void onResume() {
@@ -93,6 +150,7 @@ public class MainActivity extends AppCompatActivity
         dataSource.clear();
         dataSource.addAll(ProductDatabase.getInstance(this).readAllProducts());
         adapter.notifyDataSetChanged();
+
     }
     public void clearAll() {
         ProductDatabase database = ProductDatabase.getInstance(MainActivity.this);

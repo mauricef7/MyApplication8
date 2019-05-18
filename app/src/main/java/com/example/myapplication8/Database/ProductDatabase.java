@@ -13,7 +13,7 @@ import java.util.List;
 public class ProductDatabase extends SQLiteOpenHelper {
     public static ProductDatabase INSTANCE = null;
     private static final String DB_NAME = "ProductsDB";
-    private static final int VERSION = 1;
+    private static final int VERSION = 2;
     public static final String TABLE_NAME = "products";
 
     private static final String ID_COLUMN = "ID";
@@ -26,6 +26,7 @@ public class ProductDatabase extends SQLiteOpenHelper {
         super(context, DB_NAME, null, VERSION);
     }
     public static ProductDatabase getInstance(final Context context) {
+
         if (INSTANCE == null) {
             INSTANCE = new ProductDatabase(context);
         }
@@ -34,10 +35,13 @@ public class ProductDatabase extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(final SQLiteDatabase sqLiteDatabase) {
-            String createQuery = "CREATE TABLE " + TABLE_NAME + " (" + ID_COLUMN + "INTEGER PRIMARY KEY, " + CATEGORY_COLUMN + " TEXT NOT NULL, "
+            String createQuery = "CREATE TABLE " + TABLE_NAME + " (" + ID_COLUMN + " INTEGER PRIMARY KEY, " + CATEGORY_COLUMN + " TEXT NOT NULL, "
                     + NAME_COLUMN + " TEXT NOT NULL, " + PRICE_COLUMN +  " DOUBLE NOT NULL)";
 
             sqLiteDatabase.execSQL(createQuery);
+
+            //String createQuery2 = "INSERT INTO " + TABLE_NAME + " (category, name, price) VALUES ('shoe, ', 'brown shoe EUR', 200)";
+            //    sqLiteDatabase.execSQL(createQuery2);
     }
 
     @Override
@@ -101,22 +105,22 @@ public class ProductDatabase extends SQLiteOpenHelper {
         return products;
 
     }
-    public Product updateProduct (final Product product){
-        SQLiteDatabase database = this.getReadableDatabase();
-
-        ContentValues values = new ContentValues();
-
-        values.put(CATEGORY_COLUMN, product.getCategory());
-        values.put(NAME_COLUMN, product.getName());
-        values.put(PRICE_COLUMN, product.getPrice());
-
-        database.update(TABLE_NAME, values, ID_COLUMN + " = ?", new String[]{String.valueOf(product.getId())});
-
-        database.close();
-
-        return this.readProduct(product.getId());
-
-    }
+//    public Product updateProduct (final Product product){
+//        SQLiteDatabase database = this.getReadableDatabase();
+//
+//        ContentValues values = new ContentValues();
+//
+//        values.put(CATEGORY_COLUMN, product.getCategory());
+//        values.put(NAME_COLUMN, product.getName());
+//        values.put(PRICE_COLUMN, product.getPrice());
+//
+//        database.update(TABLE_NAME, values, ID_COLUMN + " = ?", new String[]{String.valueOf(product.getId())});
+//
+//        database.close();
+//
+//        return this.readProduct(product.getId());
+//
+//    }
     public void deleteProduct (final Product product){
         SQLiteDatabase database = this.getWritableDatabase();
         database.delete(TABLE_NAME, ID_COLUMN + " = ?", new String[]{String.valueOf(product.getId())});
@@ -134,7 +138,7 @@ public class ProductDatabase extends SQLiteOpenHelper {
                 + NAME_COLUMN + ","+ PRICE_COLUMN +" FROM " + TABLE_NAME, null);
     }
 
-    public Product getFirstTodo() {
+    public Product getSelectedProduct() {
         List<Product> products = this.readAllProducts();
 
         if (products.size() > 0) {
