@@ -36,4 +36,6 @@ public class Product implements Serializable {
 
     public long getId () { return id; }
     public void setId (final long id){ this.id = id; }
+
+
 }

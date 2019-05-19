@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.myapplication8.Database.Product;
+import com.example.myapplication8.Database.ShoppingCartList;
 import com.example.myapplication8.adapter.ProductOverviewListAdapter;
 import com.example.myapplication8.Database.ProductDatabase;
 
@@ -35,29 +36,42 @@ public class MainActivity extends AppCompatActivity
     private ListView                   listView;
     private List<Product>              dataSource;
     private ProductOverviewListAdapter adapter;
+    public ShoppingCartList shoppingCartList;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         this.listView = (ListView) findViewById(R.id.products);
-        //Button add_btn = (Button) findViewById(R.id.add_btn);
+
+        Button add_btn = (Button) findViewById(R.id.add_btn);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        shoppingCartList = new ShoppingCartList();
+
         this.dataSource = ProductDatabase.getInstance(this).readAllProducts();
 
         this.adapter = new ProductOverviewListAdapter(this, dataSource);
         this.listView.setAdapter(adapter);
+        listView.setAdapter(new ProductOverviewListAdapter(this, dataSource));
         this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
+
             public void onItemClick(final AdapterView<?> adapterView, final View view, final int i, final long l) {
                 Object element = adapterView.getAdapter().getItem(i);
-                Log.e("ClickOnList", element.toString());
+                Log.i("ClickOnList", " works"+ element.toString());
+
+                   Product selectedItem = (Product) element;
+                    shoppingCartList.newShoppingCartItem(selectedItem);
             }
         });
+
         //reload all products from database
         if (fab != null){
             fab.setOnClickListener(new View.OnClickListener() {
@@ -100,7 +114,25 @@ public class MainActivity extends AppCompatActivity
                 }
             });
         }
+        listView.setAdapter(new ProductOverviewListAdapter(this, dataSource));
+      /*  UNNESSESARY:
+      if (add_btn != null){
+            add_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View view) {
+                    Object element = adapter.getItem(i);
+                    Snackbar.make(view, "added to your shopping cart ...", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+        //listShoppingCart.add();
+                    *//*if (element instanceof Product) {
+                        Product product = (Product) element;
 
+                        Intent intent = new Intent(MainActivity.this, ShoppingCartActivity.class);
+                        intent.putExtra(ShoppingCartActivity., product.getId());
+
+                         startActivity(intent);
+                        }*//*
+                }});}*/
         listView.setAdapter(new ProductOverviewListAdapter(this, dataSource));
 
 
@@ -158,6 +190,10 @@ public class MainActivity extends AppCompatActivity
         refreshListView();
     }
 
+    public void  setShoppingCartList(Product selectedItem){
+        shoppingCartList.newShoppingCartItem(selectedItem);
+    }
+
     //public void newProduct(){
     //    Intent i = new Intent(MainActivity.this, AddNewProducts.class);
     //    startActivity(i);}
@@ -198,6 +234,9 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+
+
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -205,6 +244,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_shopping_cart) {
+            Intent i = new Intent(this, ShoppingCartActivity.class);
+            i.putExtra("Extra_shoppingCartList", shoppingCartList);
+            startActivity(i);
 
         } else if (id == R.id.nav_all_products) {
 
