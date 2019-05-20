@@ -29,8 +29,8 @@ public class ProductOverviewListAdapter extends ArrayAdapter<Product> implements
     public ProductOverviewListAdapter(final Context context, final List<Product> objects) {
         super(context, 0, objects);
         this.context = context;
-        this.element = element;
-        //this.objects = list;
+
+
 
     }
    /* @Override

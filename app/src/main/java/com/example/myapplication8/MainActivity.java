@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View view) {
-                    Snackbar.make(view, "refresh products", Snackbar.LENGTH_LONG)
+                    Snackbar.make(view, R.string.refresh_products, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
 
                     ProductDatabase database = ProductDatabase.getInstance(MainActivity.this);
@@ -212,14 +212,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-           Log.e("shoppinglist: ", shoppingCartList.get(0).getName());
-            Log.e("shoppinglist: ", shoppingCartList.get(1).getName());
-            Log.e("shoppinglist: ", shoppingCartList.get(2).getName());
-            Log.e("shoppinglist: ", shoppingCartList.get(3).getName());
-            Log.e("shoppinglist: ", shoppingCartList.get(shoppingCartList.size()-1).getName());
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }

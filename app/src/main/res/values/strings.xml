@@ -102,4 +102,10 @@
     <string name="my_account_and_settings">My account and settings</string>
     <string name="my_orders">My orders</string>
     <string name="buy_all">Buy all</string>
+    <string name="alarm_title">Order is on its way!</string>
+    <string name="alarm_text">Thank you for your order!</string>
+    <string name="refresh_products">refresh products</string>
+    <string name="no_items_in_shoppingcart">No Items in shopping cart yet!</string>
+    <string name="bought_all">bought all</string>
+    <string name="failure_shopping_cart_empty">failure: Your shopping cart is empty</string>
 </resources>

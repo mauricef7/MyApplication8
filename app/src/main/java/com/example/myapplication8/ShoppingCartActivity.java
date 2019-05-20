@@ -38,7 +38,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         }
         else{
 
-            Toast.makeText(this.getBaseContext(),"No Items in shopping cart yet!",
+            Toast.makeText(this.getBaseContext(),getString(R.string.no_items_in_shoppingcart),
                     Toast.LENGTH_SHORT).show();
 
         }
@@ -52,7 +52,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
                     if(orderlist != null) {
 
 
-                        Snackbar.make(view, "bought all", Snackbar.LENGTH_LONG)
+                        Snackbar.make(view, R.string.bought_all, Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                         //send orders to servers to process and delete shopping cart
 
@@ -61,7 +61,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
                         orderNotify();
                     }
                     else {
-                        Snackbar.make(view, "failure: Your shopping cart is empty", Snackbar.LENGTH_LONG)
+                        Snackbar.make(view, R.string.failure_shopping_cart_empty, Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                     }
                 }

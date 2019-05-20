@@ -18,4 +18,16 @@
     <string name="pref_default_display_name">Name</string>
     <string name="credit_card_back_code">Code auf der Rückseite der Kreditkarte</string>
     <string name="credit_card_number">Kreditkarten Nummer</string>
+    <string name="alarm_title">Bestellung auf dem Weg!</string>
+    <string name="shopping_cart">Einkaufswagen</string>
+    <string name="all_products">Alle Produkte</string>
+    <string name="logout">Ausloggen</string>
+    <string name="my_account_and_settings">Mein Account und Einstellungen</string>
+    <string name="my_orders">Meine Bestellungen</string>
+    <string name="buy_all">Alle kaufen</string>
+    <string name="alarm_text">Danke für die Bestellung</string>
+    <string name="refresh_products">Produkte neu laden</string>
+    <string name="no_items_in_shoppingcart">keine Produkte im Einkaufswagen</string>
+    <string name="bought_all">alle gekauft</string>
+    <string name="failure_shopping_cart_empty">Fehler! dein Einkaufswagen ist leer</string>
 </resources>

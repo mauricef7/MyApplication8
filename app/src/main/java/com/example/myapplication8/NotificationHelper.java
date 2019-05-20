@@ -40,8 +40,8 @@ public class NotificationHelper extends ContextWrapper {
 
     public NotificationCompat.Builder getChannelNotification() {
         return new NotificationCompat.Builder(getApplicationContext(), channelID)
-                .setContentTitle("Order is on its way!")
-                .setContentText("Thank you for your order!")
+                .setContentTitle(getString(R.string.alarm_title))
+                .setContentText(getString(R.string.alarm_text))
                 .setSmallIcon(R.drawable.ic_notification);
     }
 }

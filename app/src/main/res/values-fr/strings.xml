@@ -18,4 +18,16 @@
     <string name="action_sign_in">login</string>
     <string name="action_sign_in_short">login</string>
     <string name="error_invalid_email">email incorrect</string>
+    <string name="alarm_title">commande est en route!</string>
+    <string name="all_products">tous produits</string>
+    <string name="my_orders">Mes commandes</string>
+    <string name="buy_all">acheter tout</string>
+    <string name="alarm_text">Merci pour la commande</string>
+    <string name="bought_all">acheté tout</string>
+    <string name="shopping_cart">Panier d\'achat</string>
+    <string name="logout">déconnexion</string>
+    <string name="my_account_and_settings">Mon compte et mes paramètres</string>
+    <string name="refresh_products">Recharger les produits</string>
+    <string name="no_items_in_shoppingcart">aucun produit dans le panier</string>
+    <string name="failure_shopping_cart_empty">Erreur ! Votre panier est vide</string>
 </resources>
