@@ -1,15 +1,9 @@
 package com.example.myapplication8;
 
 import android.Manifest;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
+
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Build;
+
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -119,37 +113,7 @@ public class MainActivity extends AppCompatActivity
             });
         }
 
-      /*  UNNESSESARY:
-      if (add_btn != null){
-            add_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View view) {
-                    Object element = adapter.getItem(i);
-                    Snackbar.make(view, "added to your shopping cart ...", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-        //listShoppingCart.add();
-                    *//*if (element instanceof Product) {
-                        Product product = (Product) element;
 
-                        Intent intent = new Intent(MainActivity.this, ShoppingCartActivity.class);
-                        intent.putExtra(ShoppingCartActivity., product.getId());
-
-                         startActivity(intent);
-                        }*//*
-                }});}*/
-
-
-
-
-
-
-//add item to shopping cart
-//        add_btn.setOnClickListener (new View.OnClickListener(){
-        //           @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
 //For Nav Drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -259,12 +223,12 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_account) {
-            Intent intent = new Intent(getApplicationContext(),SettingsActivity.class);
+            Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_orders) {
+        /*} else if (id == R.id.nav_orders) {
 
+        }*/
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

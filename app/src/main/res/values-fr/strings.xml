@@ -30,4 +30,9 @@
     <string name="refresh_products">Recharger les produits</string>
     <string name="no_items_in_shoppingcart">aucun produit dans le panier</string>
     <string name="failure_shopping_cart_empty">Erreur ! Votre panier est vide</string>
+    <string name="category">catégorie</string>
+    <string name="name">nom</string>
+    <string name="price">prix</string>
+    <string name="add_to_cart">ajouter à panier</string>
+    <string name="delete_from_cart">reduire du panier</string>
 </resources>

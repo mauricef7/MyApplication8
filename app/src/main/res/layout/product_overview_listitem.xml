@@ -13,14 +13,14 @@
         android:layout_alignParentEnd="false"
         android:layout_marginLeft="15dp"
         android:gravity="right"
-        android:text="category" />
+        android:text="@string/category" />
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/category"
-        android:text="name"
+        android:text="@string/name"
         android:textAlignment="center" />
 
     <TextView
@@ -28,13 +28,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/name"
-        android:text="price" />
+        android:text="@string/price" />
 
     <Button
         android:id="@+id/add_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/price"
-        android:text="Add to cart" />
+        android:text="@string/add_to_cart" />
 
 </RelativeLayout>
