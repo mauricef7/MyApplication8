@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Environment;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class ProductDatabase extends SQLiteOpenHelper {
     public static ProductDatabase INSTANCE = null;
-    private static final String DB_NAME = "ProductsDB";
+    private static final String DB_NAME = Environment.getExternalStorageDirectory().getPath()+"/"+"products";
     private static final int VERSION = 2;
     public static final String TABLE_NAME = "products";
 
@@ -24,6 +25,8 @@ public class ProductDatabase extends SQLiteOpenHelper {
 
     private ProductDatabase(final Context context) {
         super(context, DB_NAME, null, VERSION);
+        SQLiteDatabase.openOrCreateDatabase(Environment.getExternalStorageDirectory().getPath()+"/"+TABLE_NAME,null);
+
     }
     public static ProductDatabase getInstance(final Context context) {
 
