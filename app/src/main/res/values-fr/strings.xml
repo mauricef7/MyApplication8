@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Application8</string>
+    <string name="nav_header_subtitle">ton premier choix pour des produits premium</string>
+    <string name="error_field_required">c\'est obligatoire</string>
+    <string name="credit_card_back_code">code sur le dot du carte de crédit</string>
+    <string name="credit_card_number">numéro de carte de crédit</string>
+    <string name="pref_name_user">ton nom</string>
+    <string name="pref_default_display_name">nom</string>
+    <string name="pref_description_social_recommendations">récommendations</string>
+    <string name="pref_title_social_recommendations">permit récommendations</string>
+    <string name="pref_header_general">générale</string>
+    <string name="title_activity_settings">options</string>
+    <string name="error_incorrect_password">incorrect</string>
+    <string name="error_invalid_password">mot de passe est trop court</string>
+    <string name="action_settings">options</string>
+    <string name="title_activity_login">login</string>
+    <string name="action_sign_in">login</string>
+    <string name="action_sign_in_short">login</string>
+    <string name="error_invalid_email">email incorrect</string>
+</resources>

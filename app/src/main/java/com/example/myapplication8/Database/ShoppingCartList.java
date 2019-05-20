@@ -22,8 +22,9 @@ public class ShoppingCartList implements Serializable {
         public void newShoppingCartItem(Product newItem) {
             this.listShoppingCart.add(newItem);
         }
+
         public int size(){
-            if(! listShoppingCart.equals(null)){
+            if(listShoppingCart != null){
                  return listShoppingCart.size();
             }
             else{return 0; }

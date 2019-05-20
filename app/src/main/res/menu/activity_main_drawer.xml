@@ -7,27 +7,27 @@
         <item
             android:id="@+id/nav_shopping_cart"
             android:icon="@drawable/ic_shopping_cart"
-            android:title="Shopping cart" />
+            android:title="@string/shopping_cart" />
         <item
             android:id="@+id/nav_all_products"
-            android:title="All products" />
-        <item
+            android:title="@string/all_products" />
+       <!-- <item
             android:id="@+id/nav_hats"
             android:title="Hats" />
         <item
             android:id="@+id/nav_shoes"
-            android:title="Shoes" />
+            android:title="Shoes" />-->
         <item
             android:id="@+id/act_logout"
             android:icon="@drawable/ic_logout"
-            android:title="Logout" />
+            android:title="@string/logout" />
         <item
             android:id="@+id/nav_account"
             android:icon="@drawable/ic_account"
-            android:title="My account and settings" />
+            android:title="@string/my_account_and_settings" />
         <item
             android:id="@+id/nav_orders"
-            android:title="My orders" />
+            android:title="@string/my_orders" />
     </group>
 
 

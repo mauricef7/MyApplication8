@@ -19,7 +19,7 @@ import com.example.myapplication8.ShoppingCartActivity;
 import java.util.ArrayList;
 
 public class ShoppingCartAdapter extends BaseAdapter implements ListAdapter {
-    private ShoppingCartList list ;
+    private ShoppingCartList list = new ShoppingCartList();
     private Context context;
 
 
@@ -31,7 +31,12 @@ public class ShoppingCartAdapter extends BaseAdapter implements ListAdapter {
 
     @Override
     public int getCount() {
+        if(list != null)
         return list.size();
+        else {
+            return 0;
+        }
+
     }
 
     @Override
@@ -66,7 +71,7 @@ public class ShoppingCartAdapter extends BaseAdapter implements ListAdapter {
 
         //Handle buttons and add onClickListeners
         Button deleteBtn = (Button)view.findViewById(R.id.delete_btn);
-        Button addBtn = (Button)view.findViewById(R.id.add_btn);
+
 
         deleteBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -76,13 +81,7 @@ public class ShoppingCartAdapter extends BaseAdapter implements ListAdapter {
                 notifyDataSetChanged();
             }
         });
-        addBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                //do something
-                notifyDataSetChanged();
-            }
-        });
+
 
         return view;
     }

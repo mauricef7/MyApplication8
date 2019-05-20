@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Application8</string>
+    <string name="nav_header_subtitle">Deine erste Wahl für premium Produkte</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="title_activity_login">einloggen</string>
+    <string name="action_sign_in">anmelden</string>
+    <string name="action_sign_in_short">anmelden</string>
+    <string name="error_invalid_email">diese EMail- Adresse ist ungültig</string>
+    <string name="error_invalid_password">dieses Passwort ist zu kurz</string>
+    <string name="error_incorrect_password">deine Anmeldedaten sind inkorrekt</string>
+    <string name="error_field_required">dieses Feld ist obligatorisch</string>
+    <string name="title_activity_settings">Einstellungen</string>
+    <string name="pref_header_general">Allgemein</string>
+    <string name="pref_title_social_recommendations">Erlaube social notifikationen</string>
+    <string name="pref_description_social_recommendations">EMpfehlungen für Kontakte</string>
+    <string name="pref_name_user">Dein Name</string>
+    <string name="pref_default_display_name">Name</string>
+    <string name="credit_card_back_code">Code auf der Rückseite der Kreditkarte</string>
+    <string name="credit_card_number">Kreditkarten Nummer</string>
+</resources>

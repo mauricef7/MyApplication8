@@ -1,11 +1,18 @@
 package com.example.myapplication8;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -36,13 +43,14 @@ public class MainActivity extends AppCompatActivity
     private ListView                   listView;
     private List<Product>              dataSource;
     private NewProductOverviewListAdapter adapter;
-    public static ShoppingCartList shoppingCartList;
+    public static ShoppingCartList shoppingCartList = new ShoppingCartList();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         this.listView = (ListView) findViewById(R.id.products);
 
@@ -53,7 +61,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        shoppingCartList = new ShoppingCartList();
+        //shoppingCartList = new ShoppingCartList();
 
         this.dataSource = ProductDatabase.getInstance(this).readAllProducts();
 
@@ -150,19 +158,10 @@ public class MainActivity extends AppCompatActivity
 
 
 
-//For product data:
-
-      // For shopping cart :
-                //if (element instanceof Product) {
-                //  Product product = (Product) element;
-
-                //     Intent intent = new Intent(MainActivity.this, ShoppingCartActivity.class);
-                //    intent.putExtra(ShoppingCartActivity.Product, product.getId());
-
-                //    startActivity(intent);
-                //}
 
     }
+
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -181,9 +180,6 @@ public class MainActivity extends AppCompatActivity
         refreshListView();
     }
 
-    public void  setShoppingCartList(Product selectedItem){
-        shoppingCartList.newShoppingCartItem(selectedItem);
-    }
 
     //public void newProduct(){
     //    Intent i = new Intent(MainActivity.this, AddNewProducts.class);
@@ -218,12 +214,22 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
            Log.e("shoppinglist: ", shoppingCartList.get(0).getName());
+            Log.e("shoppinglist: ", shoppingCartList.get(1).getName());
+            Log.e("shoppinglist: ", shoppingCartList.get(2).getName());
+            Log.e("shoppinglist: ", shoppingCartList.get(3).getName());
+            Log.e("shoppinglist: ", shoppingCartList.get(shoppingCartList.size()-1).getName());
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    //protected void notify(Context context );
 
 
 
@@ -234,15 +240,19 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_shopping_cart) {
+
+
+
             Intent i = new Intent(this, ShoppingCartActivity.class);
-            i.putExtra("Extra_shoppingCartList", shoppingCartList);
+
+
+
             startActivity(i);
+
 
         } else if (id == R.id.nav_all_products) {
 
-        } else if (id == R.id.nav_hats) {
 
-        } else if (id == R.id.nav_shoes) {
 
         } else if (id == R.id.act_logout) {
             Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
