@@ -22,7 +22,7 @@
     <string name="shopping_cart">Einkaufswagen</string>
     <string name="all_products">Alle Produkte</string>
     <string name="logout">Ausloggen</string>
-    <string name="my_account_and_settings">Mein Account und Einstellungen</string>
+    <string name="my_account_and_settings">"Accounteinstellungen "</string>
     <string name="my_orders">Meine Bestellungen</string>
     <string name="buy_all">Alle kaufen</string>
     <string name="alarm_text">Danke für die Bestellung</string>

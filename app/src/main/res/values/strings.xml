@@ -113,4 +113,5 @@
     <string name="name">name</string>
     <string name="price">price</string>
     <string name="add_to_cart">Add to cart</string>
+
 </resources>
