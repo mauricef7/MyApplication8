@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 import com.example.myapplication8.Database.Product;
 import com.example.myapplication8.Database.ShoppingCartList;
-import com.example.myapplication8.adapter.ProductOverviewListAdapter;
+import com.example.myapplication8.adapter.NewProductOverviewListAdapter;
 import com.example.myapplication8.Database.ProductDatabase;
 
 import java.util.ArrayList;
@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity
 
     private ListView                   listView;
     private List<Product>              dataSource;
-    private ProductOverviewListAdapter adapter;
-    public ShoppingCartList shoppingCartList;
+    private NewProductOverviewListAdapter adapter;
+    public static ShoppingCartList shoppingCartList;
 
 
     @Override
@@ -57,20 +57,11 @@ public class MainActivity extends AppCompatActivity
 
         this.dataSource = ProductDatabase.getInstance(this).readAllProducts();
 
-        this.adapter = new ProductOverviewListAdapter(this, dataSource);
-        this.listView.setAdapter(adapter);
-        listView.setAdapter(new ProductOverviewListAdapter(this, dataSource));
-        this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
+        this.adapter = new NewProductOverviewListAdapter(dataSource, this);
 
-            public void onItemClick(final AdapterView<?> adapterView, final View view, final int i, final long l) {
-                Object element = adapterView.getAdapter().getItem(i);
-                Log.i("ClickOnList", " works"+ element.toString());
-
-                   Product selectedItem = (Product) element;
-                    shoppingCartList.newShoppingCartItem(selectedItem);
-            }
-        });
+        //handle listview and assign adapter
+        ListView lView = (ListView)findViewById(R.id.products);
+        lView.setAdapter(adapter);
 
         //reload all products from database
         if (fab != null){
@@ -114,7 +105,7 @@ public class MainActivity extends AppCompatActivity
                 }
             });
         }
-        listView.setAdapter(new ProductOverviewListAdapter(this, dataSource));
+
       /*  UNNESSESARY:
       if (add_btn != null){
             add_btn.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +124,7 @@ public class MainActivity extends AppCompatActivity
                          startActivity(intent);
                         }*//*
                 }});}*/
-        listView.setAdapter(new ProductOverviewListAdapter(this, dataSource));
+
 
 
 
@@ -226,8 +217,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent intent = new Intent(getApplicationContext(),SettingsActivity.class);
-            startActivity(intent);
+           Log.e("shoppinglist: ", shoppingCartList.get(0).getName());
             return true;
         }
 

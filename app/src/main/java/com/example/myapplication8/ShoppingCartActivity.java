@@ -23,7 +23,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shopping_cart);
         Intent i = getIntent();
         ShoppingCartList currentShoppingCart = (ShoppingCartList) i.getSerializableExtra("EXTRA_shoppingCartList");
-       // ArrayList<Product> list = new ArrayList<Product>();
+
         //instantiate custom adapter
         ShoppingCartAdapter adapter = new ShoppingCartAdapter(currentShoppingCart, this);
 
