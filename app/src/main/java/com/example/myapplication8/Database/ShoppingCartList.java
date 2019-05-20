@@ -35,6 +35,9 @@ public class ShoppingCartList implements Serializable {
          public void remove(int pos){
             listShoppingCart.remove(pos);
          }
+         public void clearAll(){
+            listShoppingCart.clear();
+         }
 
     }
 

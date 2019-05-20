@@ -101,4 +101,5 @@
     <string name="logout">Logout</string>
     <string name="my_account_and_settings">My account and settings</string>
     <string name="my_orders">My orders</string>
+    <string name="buy_all">Buy all</string>
 </resources>

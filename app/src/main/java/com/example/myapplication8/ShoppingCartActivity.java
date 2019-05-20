@@ -1,11 +1,15 @@
 package com.example.myapplication8;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -14,10 +18,11 @@ import com.example.myapplication8.adapter.ShoppingCartAdapter;
 import com.example.myapplication8.Database.ShoppingCartList;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class ShoppingCartActivity extends AppCompatActivity {
-
+    public  ShoppingCartList orderlist = new ShoppingCartList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +42,40 @@ public class ShoppingCartActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
 
         }
+//reload all products from database
+        Button btn_buyAll = (Button) findViewById(R.id.btn_buyAll);
+        if (btn_buyAll != null){
+            btn_buyAll.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View view) {
+                    orderlist = MainActivity.shoppingCartList;
+                    if(orderlist != null) {
 
-        //handle listview and assign adapter
 
+                        Snackbar.make(view, "bought all", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                        //send orders to servers to process and delete shopping cart
+
+                        // TODO clear listView: ShoppingCartAdapter.list.clearAll();
+                        MainActivity.shoppingCartList.clearAll();
+                        orderNotify();
+                    }
+                    else {
+                        Snackbar.make(view, "failure: Your shopping cart is empty", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }
+                }
+        });
+    }}
+    private void orderNotify() {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis(), pendingIntent);
     }
 
+}
 
 
 
@@ -49,25 +83,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
 
 
-      /*  Context context = getActivity(MainActivity.class);
-        SharedPreferences shoppingCart = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-     //Retrieve the value
-        Gson gson = new Gson();
-        String jsonText = Prefs.getString("key", null);
-        String[] text = gson.fromJson(jsonText, String[].class);  //EDIT: gso to gson
 
 
-//Set the values
-        Gson gson = new Gson();
-        List<String> textList = new ArrayList<String>();
-        textList.addAll(data);
-        String jsonText = gson.toJson(textList);
-        prefsEditor.putString("key", jsonText);
-        prefsEditor.apply();
-
-*/
-
-
-    }
 
 

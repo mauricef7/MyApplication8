@@ -1,6 +1,7 @@
 package com.example.myapplication8.adapter;
 
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ import com.example.myapplication8.ShoppingCartActivity;
 import java.util.ArrayList;
 
 public class ShoppingCartAdapter extends BaseAdapter implements ListAdapter {
-    private ShoppingCartList list = new ShoppingCartList();
+    public ShoppingCartList list = new ShoppingCartList();
     private Context context;
 
 
@@ -81,6 +82,18 @@ public class ShoppingCartAdapter extends BaseAdapter implements ListAdapter {
                 notifyDataSetChanged();
             }
         });
+
+        /*Button btn_buyAll = (Button) ShoppingCartActivity.findViewById(R.id.btn_buyAll);
+        if (btn_buyAll != null){
+            btn_buyAll.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View view) {
+
+                    //send orders to servers to process and delete shopping cart
+
+                  list.clearAll();
+                }
+            });*/
 
 
         return view;
