@@ -61,7 +61,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
                         orderNotify();
                     }
                     else {
-                        Snackbar.make(view, R.string.failure_shopping_cart_empty, Snackbar.LENGTH_LONG)
+                        Snackbar.make(view, R.string.failure_shopping_cart_empty, Snackbar.LENGTH_SHORT)
                                 .setAction("Action", null).show();
                     }
                 }

@@ -1,6 +1,7 @@
 package com.example.myapplication8.adapter;
 
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,8 +76,11 @@ public class NewProductOverviewListAdapter  extends BaseAdapter implements ListA
                 public void onClick(View v) {
 
                     MainActivity.shoppingCartList.newShoppingCartItem(currentProduct);
+
                     Log.i(" Add Button Clicked", " btn clicked" + position);
                     notifyDataSetChanged();
+                    Snackbar.make(v, R.string.Item_added_to_shopping_cart, Snackbar.LENGTH_SHORT)
+                            .setAction("Action", null).show();
                 }
             });
 

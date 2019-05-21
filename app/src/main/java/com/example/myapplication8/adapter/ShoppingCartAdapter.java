@@ -83,17 +83,6 @@ public class ShoppingCartAdapter extends BaseAdapter implements ListAdapter {
             }
         });
 
-        /*Button btn_buyAll = (Button) ShoppingCartActivity.findViewById(R.id.btn_buyAll);
-        if (btn_buyAll != null){
-            btn_buyAll.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View view) {
-
-                    //send orders to servers to process and delete shopping cart
-
-                  list.clearAll();
-                }
-            });*/
 
 
         return view;
