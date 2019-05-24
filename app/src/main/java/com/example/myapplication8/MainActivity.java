@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -51,13 +52,13 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
 
-        this.listView = (ListView) findViewById(R.id.products);
+        this.listView = findViewById(R.id.products);
 
-        Button add_btn = (Button) findViewById(R.id.add_btn);
+        ImageButton add_btn = findViewById(R.id.add_btn);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //shoppingCartList = new ShoppingCartList();
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity
         this.adapter = new NewProductOverviewListAdapter(dataSource, this);
 
         //handle listview and assign adapter
-        ListView lView = (ListView)findViewById(R.id.products);
+        ListView lView = findViewById(R.id.products);
         lView.setAdapter(adapter);
 
         //reload all products from database
@@ -115,13 +116,13 @@ public class MainActivity extends AppCompatActivity
 
 
 //For Nav Drawer
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
 
@@ -149,14 +150,11 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    //public void newProduct(){
-    //    Intent i = new Intent(MainActivity.this, AddNewProducts.class);
-    //    startActivity(i);}
 
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -227,7 +225,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

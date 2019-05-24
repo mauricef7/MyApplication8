@@ -35,4 +35,9 @@
     <string name="name">Name</string>
     <string name="price">Preis</string>
     <string name="add_to_cart">Zum EInkaufswagen hinzufügen</string>
+    <string name="Item_added_to_shopping_cart">dem Einkaufswagen hinzugefügt</string>
+    <string name="quantity">Menge</string>
+    <string name="enter_quantity">Gib die Bestellmenge an:</string>
+    <string name="change_quantity">Ändere die Menge</string>
+    <string name="failure_quantity_empty">Achtung: Es wurde keine Menge eingegeben</string>
 </resources>

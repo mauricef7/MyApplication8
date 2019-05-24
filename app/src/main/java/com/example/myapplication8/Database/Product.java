@@ -7,6 +7,7 @@ public class Product implements Serializable {
     private String category;
     private String name;
     private double price;
+    private int quantity;
 
     public Product() {
         this(null, null, 0.0);
@@ -21,6 +22,7 @@ public class Product implements Serializable {
         this.category = category;
         this.name = name;
         this.price = price;
+
     }
     public String getCategory() {return category;}
 
@@ -37,5 +39,7 @@ public class Product implements Serializable {
     public long getId () { return id; }
     public void setId (final long id){ this.id = id; }
 
+    public int getQuantity (){return quantity;}
+    public void setQuantity (final int quantity) { this.quantity = quantity; }
 
 }

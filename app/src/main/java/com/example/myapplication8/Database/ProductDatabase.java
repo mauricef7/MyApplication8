@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Environment;
+import android.util.Log;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -42,9 +43,8 @@ public class ProductDatabase extends SQLiteOpenHelper {
                     + NAME_COLUMN + " TEXT NOT NULL, " + PRICE_COLUMN +  " DOUBLE NOT NULL)";
 
             sqLiteDatabase.execSQL(createQuery);
+        Log.e("Database: ", "Table created: " + TABLE_NAME);
 
-            //String createQuery2 = "INSERT INTO " + TABLE_NAME + " (category, name, price) VALUES ('shoe, ', 'brown shoe EUR', 200)";
-            //    sqLiteDatabase.execSQL(createQuery2);
     }
 
     @Override
@@ -53,6 +53,7 @@ public class ProductDatabase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(dropTable);
 
         onCreate(sqLiteDatabase);
+        Log.i("Database: ", "Table upgrade: " + TABLE_NAME);
 
     }
     public Product createProduct (final Product product){
@@ -66,8 +67,10 @@ public class ProductDatabase extends SQLiteOpenHelper {
         long newID = database.insert(TABLE_NAME, null, values);
 
         database.close();
-
+        Log.i("Database: ", "Product created ");
         return readProduct(newID);
+
+
     }
     public Product readProduct (final long id){
             SQLiteDatabase database = this.getReadableDatabase();
@@ -102,7 +105,7 @@ public class ProductDatabase extends SQLiteOpenHelper {
                 }
             } while (cursor.moveToNext());
         }
-
+        Log.i("Database: ", "All Data read ");
         database.close();
 
         return products;

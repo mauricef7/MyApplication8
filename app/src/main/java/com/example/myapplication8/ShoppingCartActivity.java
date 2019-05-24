@@ -1,5 +1,6 @@
 package com.example.myapplication8;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -8,6 +9,7 @@ import android.content.SharedPreferences;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -21,9 +23,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import static android.support.v4.app.ActivityCompat.startActivityForResult;
+
 public class ShoppingCartActivity extends AppCompatActivity {
     public  ShoppingCartList orderlist = new ShoppingCartList();
-
+    private int quantity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ShoppingCartAdapter adapter;
@@ -32,8 +36,8 @@ public class ShoppingCartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shopping_cart);
         Intent i = getIntent();
         if (MainActivity.shoppingCartList != null) {
-            adapter = new ShoppingCartAdapter(MainActivity.shoppingCartList, this);
-            ListView lView = (ListView)findViewById(R.id.shopping_cart_products_ListView);
+            adapter = new ShoppingCartAdapter(MainActivity.shoppingCartList, this, this);
+            ListView lView = findViewById(R.id.shopping_cart_products_ListView);
             lView.setAdapter(adapter);
         }
         else{
@@ -42,8 +46,12 @@ public class ShoppingCartActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
 
         }
+
+
+
+
 //reload all products from database
-        Button btn_buyAll = (Button) findViewById(R.id.btn_buyAll);
+        Button btn_buyAll = findViewById(R.id.btn_buyAll);
         if (btn_buyAll != null){
             btn_buyAll.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -66,7 +74,9 @@ public class ShoppingCartActivity extends AppCompatActivity {
                     }
                 }
         });
-    }}
+    }
+
+    }
     private void orderNotify() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
@@ -74,6 +84,22 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis(), pendingIntent);
     }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        int quantity =0;
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                String result=data.getStringExtra("result");
+                quantity = Integer.parseInt(result);
+
+                //Log.i("result of OnActivityResult: " + result);
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+
+            }
+
+        }
+    }
+
 
 }
 

@@ -35,4 +35,9 @@
     <string name="price">prix</string>
     <string name="add_to_cart">ajouter à panier</string>
     <string name="delete_from_cart">reduire du panier</string>
+    <string name="Item_added_to_shopping_cart">ajouter à panier</string>
+    <string name="failure_quantity_empty">Attention : aucune quantité saisie</string>
+    <string name="change_quantity">Modifier quantité</string>
+    <string name="enter_quantity">Déterminer la quantité</string>
+    <string name="quantity">quantité</string>
 </resources>

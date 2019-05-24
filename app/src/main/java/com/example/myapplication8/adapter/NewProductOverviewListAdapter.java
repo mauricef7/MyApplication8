@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -57,18 +58,18 @@ public class NewProductOverviewListAdapter  extends BaseAdapter implements ListA
             }
 
             //Handle TextView and display string from your list
-            TextView listItemCategory = (TextView)view.findViewById(R.id.category);
+            TextView listItemCategory = view.findViewById(R.id.category);
             listItemCategory.setText(getItem(position).getCategory());
 
-            TextView listItemName = (TextView)view.findViewById(R.id.name);
+            TextView listItemName = view.findViewById(R.id.name);
             listItemName.setText(getItem(position).getName());
 
-            TextView listItemPrice = (TextView)view.findViewById(R.id.price);
+            TextView listItemPrice = view.findViewById(R.id.price);
             listItemPrice.setText(Double.toString(getItem(position).getPrice()));
 
             //Handle buttons and add onClickListeners
-            Button deleteBtn = (Button)view.findViewById(R.id.delete_btn);
-            Button addBtn = (Button)view.findViewById(R.id.add_btn);
+
+            ImageButton addBtn = view.findViewById(R.id.add_btn);
 
 
             addBtn.setOnClickListener(new View.OnClickListener(){
