@@ -111,22 +111,7 @@ public class ProductDatabase extends SQLiteOpenHelper {
         return products;
 
     }
-//    public Product updateProduct (final Product product){
-//        SQLiteDatabase database = this.getReadableDatabase();
-//
-//        ContentValues values = new ContentValues();
-//
-//        values.put(CATEGORY_COLUMN, product.getCategory());
-//        values.put(NAME_COLUMN, product.getName());
-//        values.put(PRICE_COLUMN, product.getPrice());
-//
-//        database.update(TABLE_NAME, values, ID_COLUMN + " = ?", new String[]{String.valueOf(product.getId())});
-//
-//        database.close();
-//
-//        return this.readProduct(product.getId());
-//
-//    }
+
     public void deleteProduct (final Product product){
         SQLiteDatabase database = this.getWritableDatabase();
         database.delete(TABLE_NAME, ID_COLUMN + " = ?", new String[]{String.valueOf(product.getId())});

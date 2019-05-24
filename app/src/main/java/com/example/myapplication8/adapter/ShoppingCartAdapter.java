@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
+
 import android.support.v4.app.ActivityCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,15 +17,10 @@ import android.widget.TextView;
 
 import com.example.myapplication8.Database.Product;
 import com.example.myapplication8.Database.ShoppingCartList;
-import com.example.myapplication8.MainActivity;
+
 import com.example.myapplication8.R;
 import com.example.myapplication8.SetQuantityActivity;
-import com.example.myapplication8.ShoppingCartActivity;
 
-
-import java.util.ArrayList;
-
-import android.support.v4.app.ActivityCompat;
 
 
 public class ShoppingCartAdapter extends BaseAdapter implements ListAdapter {

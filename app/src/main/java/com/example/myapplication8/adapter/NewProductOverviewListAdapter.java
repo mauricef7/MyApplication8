@@ -7,17 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
+
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import com.example.myapplication8.Database.ShoppingCartList;
 import com.example.myapplication8.MainActivity;
 import com.example.myapplication8.R;
 import com.example.myapplication8.Database.Product;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class NewProductOverviewListAdapter  extends BaseAdapter implements ListAdapter {
